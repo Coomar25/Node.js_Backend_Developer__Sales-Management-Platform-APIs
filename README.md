@@ -45,7 +45,7 @@ In this assignment, you will be tasked with developing a Node.js backend applica
 
 ## Submission Guidelines:
 
-1. Fork this GitHub repository [Assignment Repo](https://github.com/internsathi/jr-backend-assignment) to your own GitHub account.
+1. Fork this GitHub repository [Assignment Repo](https://github.com/internsathi/backend-assignment) to your own GitHub account.
 2. Commit your code regularly and push the changes to your forked repository.
 3. Do not create a pull request; just submit your forked repository.
 4. Provide a DOCS.md file with instructions on how to set up and run your application.
