@@ -1,0 +1,29 @@
+{
+  "name": "backend-assignment",
+  "version": "1.0.0",
+  "description": "In this assignment, you will be tasked with developing a Node.js backend application that demonstrates your proficiency in backend development, specifically with Node.js and SQL databases. The assignment will assess your ability to architect and implement APIs, handle database operations.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coomar25/backend-assignment.git"
+  },
+  "author": "Kumar Chaudhary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coomar25/backend-assignment/issues"
+  },
+  "homepage": "https://github.com/Coomar25/backend-assignment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
