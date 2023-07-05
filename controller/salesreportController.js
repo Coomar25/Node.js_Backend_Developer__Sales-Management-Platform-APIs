@@ -23,3 +23,16 @@ export const getSalesReport = async (req, res) => {
         });
     }
 };
+
+
+export const getTopSellingProducts = async (req, res) => {
+    const sqlQuery = 'SELECT productname, SUM(quantity) AS totalQuantity FROM orders GROUP BY productname ORDER BY totalquantity DESC LIMIT 10';
+    try {
+        const [rows] = await db.promise().execute(sqlQuery);
+        res.status(200).json(rows);
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error occured while retriving the top-selling products.'
+        });
+    }
+}

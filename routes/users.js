@@ -2,7 +2,7 @@ import express from 'express';
 import { registerUser, loginUser, testJWtAuthorization, getalluser, updateUser, deleteUser } from '../controller/user.js';
 import { addProduct, getAllProductDetail, updateProduct, deleteProduct } from '../controller/productController.js';
 import { createOrder, updateOrder, deleteOrder, allOrderDetails } from '../controller/orderController.js';
-import { getSalesReport } from '../controller/salesreportController.js';
+import { getSalesReport, getTopSellingProducts } from '../controller/salesreportController.js';
 import { authenticateToken } from '../middleware/auth.js';
 const router = express.Router();
 
@@ -29,8 +29,8 @@ router.delete('/api/deleteOrder/:orderId', deleteOrder);
 router.get('/api/allOrderDetails', allOrderDetails);
 
 // APIs to generate sales reports,
-
 router.get('/reports/sales', getSalesReport);
+router.get('/report/getTopSellingProducts', getTopSellingProducts);
 
 
 
