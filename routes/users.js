@@ -34,7 +34,4 @@ router.get('/report/getTopSellingProducts', getTopSellingProducts);
 
 
 
-
-
-
 export default router;

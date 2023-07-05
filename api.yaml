@@ -1,0 +1,342 @@
+swagger: '2.0'
+info:
+  title: Sales Management Platform API Documentation By Kumar Chaudhary
+  description: You need to provide token like this way such that must need to write bearer before token ===>:- bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt1bWFyX0NoYXVkaGFyeSIsImlhdCI6MTY4ODU4MDk2NiwiZXhwIjoxNjg4NTgxODY2fQ.LU0T3VF4IjYWRWrl1JDCH_P4fw-hSwXwitSwzP7sJQM
+  version: 1.0.0
+definitions:
+  UserRegistration:
+    type: object
+    properties:
+      username:
+        type: string
+        example: Kumar_Chaudhary
+      email:
+        type: string
+        format: email
+        example: kumarbhetwal25@gmail.com
+      password:
+        type: string
+        example: 11111111
+      confirmpassword:
+        type: string
+        example: 11111111
+  UserLogin:
+    type: object
+    properties:
+      username:
+        type: string
+        example: Kumar_Chaudhary
+      password:
+        type: string
+        example: 11111111
+  UpdateUser:
+    type: object
+    properties:
+      username:
+        type: string
+        example: Updated5
+      email:
+        type: string
+        example: updated45@gmail.com
+      password:
+        type: string
+        example: 723339875376q5
+  AddProduct:
+    type: object
+    properties:
+        productname:
+          type: string
+          example: Product 1
+        description:
+          type: string
+          example: Description
+        category:
+          type: string
+          example: Cat A
+        price:
+          type: integer
+          example: 2000
+        quantity:
+          type: integer
+          example: 9
+        brand:
+          type: string
+          example: Apple
+        image:
+          type: string
+          example: Pro Max
+
+securityDefinitions:
+  # JWT:
+  #   type: apiKey
+  #   name: Authorization
+  #   in: header
+  bearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: Use bearer token
+
+
+
+paths:
+  /api/registeruser:
+    post:
+      summary: Register a new user
+      tags:
+        - User Management APIs to register new users, authenticate existing users, and manage user profiles
+      description: This API allows you to register a new user by providing the necessary user information.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserRegistration'
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad request
+      requestBody:
+        content:
+          application/json:
+            
+  /api/loginuser:
+    post:
+      summary: Authenticate user
+      tags:
+          - User Management APIs to register new users, authenticate existing users, and manage user profiles
+      description: Use this API to authenticate an existing user.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserLogin'
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/UserLogin'
+       
+  /api/testJWtAuthorization:
+    get:
+      summary: Test JWT Authorization
+      tags:
+        - User Management APIs to register new users, authenticate existing users, and manage user profiles
+      description: A protected API endpoint to test JWT authorization using the provided token. You need to write token in authorization filed like this way = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt1bWFyX0NoYXVkaGFyeSIsImlhdCI6MTY4ODU3ODYzMCwiZXhwIjoxNjg4NTc5NTMwfQ.mjMzq5GqS6CUr_EN8baUOztr6abSCDOrHDmSkm3tjNc  such that must need to write bearer before token
+      security:
+        - JWT: []
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+
+            
+  /api/getallUser:
+    get:
+      summary: Get all users
+      tags:
+        - User Management APIs to register new users, authenticate existing users, and manage user profiles
+      description: Retrieve all user profiles. This is a protected API endpoint.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+
+      security:
+        - JWT: []
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+  /api/updateuser/{id}:
+      put:
+        summary: Update user
+        tags:
+        - User Management APIs to register new users, authenticate existing users, and manage user profiles
+        description: Update an existing user profile.
+        security:
+          - JWT: []
+        parameters:
+          - name: Authorization
+            in: header
+            required: true
+            type: string
+          - name: id
+            in: path
+            required: true
+            type: string
+          - name: body
+            in: body
+            required: true
+            type: string
+            schema:
+              $ref: '#/definitions/UpdateUser'
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/UpdateUser'
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/UserLogin'
+  /api/deleteUser/{id}:
+    delete:
+      summary: Delete user
+      tags:
+        - User Management APIs to register new users, authenticate existing users, and manage user profiles
+      description: Delete a user by specifying the user ID.
+      security:
+        - JWT: []
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+
+  /api/addProduct:
+    post:
+      summary: Add a product
+      tags:
+        - Product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AddProduct'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productname:
+                  type: string
+                description:
+                  type: string
+                category:
+                  type: string
+                price:
+                  type: string
+                quantity:
+                  type: string
+                brand:
+                  type: string
+                image:
+                  type: string
+            example:
+              productname: hello
+              description: hello
+              category: hello
+              price: hello
+              quantity: hello
+              brand: hello
+              image: hello
+      responses:
+        '200':
+          description: Success
+
+  /api/getAllProductDetail:
+    get:
+      summary: Get all product details
+      tags:
+        - Product
+      responses:
+        '200':
+          description: Success
+
+  /api/updateProduct/{id}:
+    put:
+      summary: Update a product
+      tags:
+        - Product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productname:
+                  type: string
+                description:
+                  type: string
+                category:
+                  type: string
+                price:
+                  type: integer
+                quantity:
+                  type: integer
+                brand:
+                  type: string
+                image:
+                  type: string
+            example:
+              productname: updated
+              description: updated
+              category: updated
+              price: 2000
+              quantity: 9
+              brand: updated
+              image: updated
+      responses:
+        '200':
+          description: Success
+
+  /api/deleteProduct/{id}:
+    delete:
+      summary: Delete a product
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+

@@ -17,7 +17,10 @@ export const registerUser = (req, res) => {
     db.promise()
         .execute(sqlInsert, [username, email, password])
         .then((result) => {
-            res.status(200).send(result);
+            res.status(200).json({
+                message: "User has been registered successfully",
+                result: result
+            });
         })
         .catch((error) => {
             res.status(500).send({ error: "An error occurred while inserting the user's data." });
