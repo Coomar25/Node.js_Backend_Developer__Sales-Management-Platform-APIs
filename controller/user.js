@@ -52,6 +52,67 @@ export const testJWtAuthorization = (req, res) => {
 }
 
 
+export const getalluser = (req, res) => {
+    const getUser = 'SELECT * from userinfo';
+    db.query(getUser, (error, result) => {
+        if (error)
+            res.status(500).json({ error: "Could not fetch all data! Some error occured" });
+        else {
+            res.json(result);
+        }
+    });
+}
+
+
+export const updateUser = (req, res) => {
+    const { username, email, password } = req.body;
+    const id = req.params.id;
+    if (!username || !email || !password || !id) {
+        return res.status(400).send({ error: "Please provide all required fields" });
+    }
+    const sqlUpdate = "UPDATE userinfo SET username = ?, email = ?, password = ? WHERE id = ?";
+    db.query(sqlUpdate, [username, email, password, id], (error) => {
+        if (error) {
+            res.status(500).send({ error: "An error occurred while updating the user's data" });
+        } else {
+            res.status(200).send("User details updated successfully");
+        }
+    });
+};
+
+
+export const deleteUser = (req, res) => {
+    const id = req.params.id;
+    if (!id) {
+        return res.status(400).send({ error: "Please provide the ID parameter" });
+    }
+
+    const sqlCheck = "SELECT * FROM userinfo WHERE id = ?";
+    db.query(sqlCheck, [id], (error, result) => {
+        if (error) {
+            res.status(500).send({ error: "An error occurred while checking the user's data" });
+        } else {
+            if (result.length === 0) {
+                return res.status(404).send({ error: "User not found" });
+            }
+            const sqlDelete = "DELETE FROM userinfo WHERE id = ?";
+            db.query(sqlDelete, [id], (error) => {
+                if (error) {
+                    res.status(500).send({ error: "An error occurred while deleting the user's data" });
+                } else {
+                    res.status(200).send("User details deleted successfully");
+                }
+            });
+        }
+    });
+};
+
+
+
+
+
+
+
 
 
 
