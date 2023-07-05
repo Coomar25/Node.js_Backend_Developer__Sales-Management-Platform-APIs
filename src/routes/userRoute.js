@@ -1,5 +1,11 @@
 const express = require("express");
-const { registerUser } = require("../controllers/userController");
+const {
+  registerUser,
+  loginUser,
+  updateUserById,
+  deleteUserById,
+  getUserById,
+} = require("../controllers/userController");
 const { validateRegisterUser } = require("../validators/userValidator");
 const upload = require("../helper/multer");
 
@@ -11,5 +17,13 @@ userRoute.post(
   validateRegisterUser,
   registerUser
 );
+
+userRoute.post("/login", loginUser);
+
+userRoute.put("/update/:id", upload.single("avatar"), updateUserById);
+
+userRoute.delete("/delete/:id", deleteUserById);
+
+userRoute.get("/get-user/:id", getUserById);
 
 module.exports = userRoute;

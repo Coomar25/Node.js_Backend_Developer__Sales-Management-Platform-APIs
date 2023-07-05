@@ -3,7 +3,7 @@ const { body } = require("express-validator");
 const validateReq = require("../helper/validationHelper");
 
 const validateRegisterUser = [
-  body("fullname")
+  body("fullName")
     .notEmpty()
     .withMessage("Full name is required!")
     .isLength({ min: 2 })
