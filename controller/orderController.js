@@ -18,14 +18,19 @@ export const createOrder = async (req, res) => {
             });
         }
         const username = rows[0].username;
-        const insertOrder = "INSERT INTO orders (userId, username, productname, quantity, price, totalAmount) VALUES (?, ?, ?, ?, ?, ?)";
+        const insertOrder = "INSERT INTO orders (userId, username, productname, quantity, price, totalAmount, orderdate ) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP())";
         const result = await db.promise().execute(insertOrder, [userId, username, productname, quantity, price, totalAmount]);
+
+        // const updateSalesReport = "INSERT INTO sales_report (report_interval, date, totalSales) VALUES (?, CURRENT_DATE(), ?) ON DUPLICATE KEY UPDATE totalSales = totalSales + ?";
+        // await db.promise().execute(updateSalesReport, [report_interval, totalAmount, totalAmount]);
+
+
         res.status(200).json({
             message: "Order has been created successfully"
         });
     } catch (error) {
         res.status(500).send({
-            message: "An error occurred while creating the order."
+            message: "Exception Occured! An error occurred while creating the order."
         });
     }
 };
