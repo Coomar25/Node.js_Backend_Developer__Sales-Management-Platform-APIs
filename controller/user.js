@@ -86,7 +86,6 @@ export const deleteUser = (req, res) => {
     if (!id) {
         return res.status(400).send({ error: "Please provide the ID parameter" });
     }
-
     const sqlCheck = "SELECT * FROM userinfo WHERE id = ?";
     db.query(sqlCheck, [id], (error, result) => {
         if (error) {
