@@ -31,6 +31,7 @@ const registerUser = async (req, res) => {
         fullname,
         email,
         password: hashedPassword,
+        avatar: req.file?.path,
       },
     });
 
