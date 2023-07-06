@@ -105,7 +105,10 @@ const getProductById = async (req, res) => {
     // Show product details
     res
       .status(200)
-      .json({ message: "Product retrieved successfully.", product: product });
+      .json({
+        message: "Product details retrieved successfully.",
+        product: product,
+      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while getting a product." });

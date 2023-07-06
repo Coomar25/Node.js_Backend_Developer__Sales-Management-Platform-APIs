@@ -47,7 +47,7 @@ const addOrder = async (req, res) => {
     });
     res
       .status(201)
-      .json({ message: "Order created successfully.", order: order });
+      .json({ message: "Order added successfully.", order: order });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while ordering." });
@@ -156,7 +156,7 @@ const getOrderById = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "Order fetched successfully.", order: order });
+      .json({ message: "Order details retrieved successfully.", order: order });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while getting a order." });
