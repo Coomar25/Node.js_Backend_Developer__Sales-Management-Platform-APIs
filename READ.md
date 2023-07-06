@@ -6,12 +6,16 @@ This document provides information on how to run the Sales Management Platform A
 
 The Sales Management Platform APIs are built using the following technologies:
 
-- Node.js: A JavaScript runtime environment that allows executing JavaScript code on the server-side.
-- Express: A popular web application framework for Node.js that simplifies the creation of APIs and web applications.
-- Body-parser: A middleware module for parsing incoming request bodies in a middleware before the handlers.
-- CORS: A middleware that enables Cross-Origin Resource Sharing for handling HTTP requests from different origins.
-- swagger-ui-express: A middleware for rendering Swagger UI to visualize and interact with the API resources.
-- YAML: A human-readable data serialization format used to define the API documentation.
+-Node.js: A JavaScript runtime environment that allows executing JavaScript code on the server-side.
+-Express: A popular web application framework for Node.js that simplifies the creation of APIs and web applications.
+-Body-parser: A middleware module for parsing incoming request bodies in a middleware before the handlers.
+-CORS: A middleware that enables Cross-Origin Resource Sharing for handling HTTP requests from different origins.
+-swagger-ui-express: A middleware for rendering Swagger UI to visualize and interact with the API resources.
+-YAML: A human-readable data serialization format used to define the API documentation.
+-MySQL: A popular open-source relational database management system used for storing data.
+-jsonwebtoken: A package used to create and verify JSON Web Tokens (JWTs) for authentication and authorization.
+-Postman: A collaboration platform for API development and testing, used to check and interact with the APIs.
+-Visual Studio Code: A widely used source code editor that provides a rich set of features for web development.
 
 ## Local Setup
 

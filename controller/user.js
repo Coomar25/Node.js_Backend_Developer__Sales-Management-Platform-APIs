@@ -1,8 +1,9 @@
 import db from '../model/dbmodel.js'
 export const secretKey = "secretKey";
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
-export const registerUser = (req, res) => {
+export const registerUser = async (req, res) => {
     const { username, email, password, confirmpassword } = req.body;
 
     if (!username || !email || !password || !confirmpassword) {
@@ -13,19 +14,27 @@ export const registerUser = (req, res) => {
         return res.status(400).send({ error: "Password and confirm password do not match." });
     }
 
-    const sqlInsert = "INSERT INTO userinfo(username, email, password) VALUES (?, ?, ?)";
-    db.promise()
-        .execute(sqlInsert, [username, email, password])
-        .then((result) => {
-            res.status(200).json({
-                message: "User has been registered successfully",
-                result: result
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const sqlInsert = "INSERT INTO userinfo(username, email, password) VALUES (?, ?, ?)";
+        db.promise()
+            .execute(sqlInsert, [username, email, hashedPassword])
+            .then((result) => {
+                res.status(200).json({
+                    message: "User has been registered successfully",
+                    result: result
+                });
+            })
+            .catch((error) => {
+                res.status(500).send({ error: "An error occurred while inserting the user's data." });
             });
-        })
-        .catch((error) => {
-            res.status(500).send({ error: "An error occurred while inserting the user's data." });
-        });
+    } catch (error) {
+        res.status(500).send({ error: "An error occurred while encrypting the password." });
+    }
 };
+
 
 
 export const loginUser = async (req, res) => {

@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import RoutingUsers from './routes/users.js';
+import bcrypt from 'bcrypt';
 
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
