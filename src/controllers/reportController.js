@@ -123,9 +123,47 @@ const getTotalSalesByMonth = async (req, res) => {
   }
 };
 
+// Top selling products
+const getTopSellingProducts = async (req, res) => {
+  try {
+    const limit = req.query.limit || 5;
+
+    const topSellingProducts = await prisma.product.findMany({
+      orderBy: {
+        orders: {
+          _count: "desc",
+        },
+      },
+      include: {
+        orders: true,
+      },
+      take: Number(limit),
+    });
+
+    const formattedProducts = topSellingProducts.map((product) => ({
+      name: product.name,
+      quantity: product.orders.reduce(
+        (total, order) => total + order.quantity,
+        0
+      ),
+    }));
+
+    res.status(200).json({
+      message: `Top ${limit} selling products.`,
+      products: formattedProducts,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "Error while retrieving top selling products." });
+  }
+};
+
 module.exports = {
   getTotalSales,
   getTotalSalesByDay,
   getTotalSalesByWeek,
   getTotalSalesByMonth,
+  getTopSellingProducts,
 };
