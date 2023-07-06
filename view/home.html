@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Management Platform APIs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        p {
+            margin: 0 0 20px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow: auto;
+        }
+
+        .instruction {
+            margin-bottom: 30px;
+        }
+
+        .code-block {
+            margin: 20px 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .sub-section {
+            margin: 20px 0;
+        }
+
+        .sub-section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .api-endpoints {
+            margin-top: 30px;
+        }
+
+        .api-endpoint {
+            margin-bottom: 20px;
+        }
+
+        .api-endpoint h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .api-endpoint p {
+            margin: 0;
+        }
+
+        .api-endpoint pre {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Sales Management Platform APIs</h1>
+    </header>
+
+    <main>
+        <div class="instruction">
+            <h1>Developed by Kumar Chaudhary <a href="https://kumarchaudhary.com.np/">Visit Profile</a> </h1>
+            <hr>
+            <h2>Local Setup</h2>
+
+            <p>To run the Sales Management Platform APIs locally, please follow the instructions below:</p>
+            <ol>
+                <li>Ensure that you have Node.js installed on your machine. If not, you can download it from the
+                    official website: <a href="https://nodejs.org/en/download/">Node.js Downloads</a>.</li>
+                <li>Clone the project repository from the desired location:</li>
+                <pre>git clone &lt;repository-url&gt;</pre>
+                <li>Navigate to the project directory:</li>
+                <pre>cd &lt;project-directory&gt;</pre>
+                <li>Install project dependencies by running the following command:</li>
+                <pre>npm install</pre>
+                <li>Start the server by executing the following command:</li>
+                <pre>npm start</pre>
+            </ol>
+            <p>The API server will now be running on <a href="http://localhost:9000">http://localhost:9000</a>.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>API Documentation</h2>
+            <p>The Sales Management Platform APIs are documented using Swagger. To view and interact with the API
+                documentation, follow these steps:</p>
+            <ol>
+                <li>Make sure the API server is running locally by following the instructions mentioned in the "Local
+                    Setup" section.</li>
+                <li>Open a web browser and navigate to <a
+                        href="http://localhost:9000/api-docs">http://localhost:9000/api-docs</a>.</li>
+            </ol>
+            <p>The Swagger UI will be displayed, providing an overview of the available endpoints and their
+                descriptions. Explore the API documentation by expanding the different sections and interacting with the
+                endpoints.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>Additional Information</h2>
+            <p>The main server file is located at <code>index.js</code>.</p>
+            <p>The API routes for users are defined in <code>routes/users.js</code>.</p>
+            <p>The API documentation is defined in <code>api.yaml</code>.</p>
+            <p>If you encounter any issues or have any questions, please don't hesitate to reach out for assistance.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>API Token Authentication</h2>
+            <p>To access protected API endpoints, you need to include a token in the following format:</p>
+            <pre>Authorization: Bearer &lt;token&gt;</pre>
+            <p>Make sure to include the word "Bearer" followed by a space before the token. The token should be placed
+                in the Authorization header of your API request.</p>
+            <p>When making a request to an API endpoint that requires authentication, include the above Authorization
+                header in your request. The server will validate the token's authenticity and permissions. If the token
+                is valid and not expired, you will be granted access to the protected resources or operations.</p>
+            <p>Remember to replace the example token with the actual token provided to you for authentication.</p>
+            <p>For more information on how to use API token authentication and the specific endpoints that require
+                authentication, please refer to the API documentation or contact the API provider.</p>
+            <p>Feel free to modify and format this information as needed to fit your README.md file.</p>
+        </div>
+    </main>
+</body>
+
+</html>
