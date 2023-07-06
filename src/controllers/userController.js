@@ -107,7 +107,7 @@ const updateUserById = async (req, res) => {
     if (password) {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
-      updatedData.password = hashedPassword;
+      updateData.password = hashedPassword;
     }
 
     if (req.file) {

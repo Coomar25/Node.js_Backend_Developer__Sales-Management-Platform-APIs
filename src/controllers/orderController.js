@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { paginateResults } = require("../helper/paginationHelper");
 
 const prisma = new PrismaClient();
 
@@ -165,13 +166,25 @@ const getOrderById = async (req, res) => {
 // Get all orders
 const getAllOrders = async (req, res) => {
   try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const totalOrders = await prisma.order.count();
+    const totalPages = Math.ceil(totalOrders / limit);
+
     const orders = await prisma.order.findMany({ include: { product: true } });
     if (!orders) {
       return res.status(404).json({ error: "No orders found" });
     }
-    res
-      .status(200)
-      .json({ message: "All order fetched successfully.", all_orders: orders });
+
+    const paginatedOrders = paginateResults(orders, page, limit);
+    res.status(200).json({
+      message: "All order fetched successfully.",
+      currentPage: page,
+      totalPages: totalPages,
+      totalOrders: totalOrders,
+      all_orders: paginatedOrders,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while fetching all orders." });
@@ -215,12 +228,10 @@ const getAllOrdersByProduct = async (req, res) => {
       return res.status(404).json({ error: "Product not found." });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "All orders retrieved successfully.",
-        orders: product.orders,
-      });
+    res.status(200).json({
+      message: "All orders retrieved successfully.",
+      orders: product.orders,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while retrieving product orders." });

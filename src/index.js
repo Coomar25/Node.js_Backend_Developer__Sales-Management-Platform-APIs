@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const morgan = require("morgan");
 const userRoute = require("./routes/userRoute");
@@ -8,6 +9,7 @@ const reportRoute = require("./routes/reportRoute");
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
