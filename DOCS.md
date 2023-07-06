@@ -51,7 +51,7 @@ The Swagger UI will be displayed, providing an overview of the available endpoin
 Explore the API documentation by expanding the different sections and interacting with the endpoints.
 
 ## Additional Information
-The main server file is located at server.js.
+The main server file is located at index.js.
 The API routes for users are defined in routes/users.js.
 The API documentation is defined in api.yaml.
 
