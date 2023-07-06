@@ -29,7 +29,7 @@ To run the Sales Management Platform APIs locally, please follow the instruction
    git clone <repository-url>
 
 
-## Now then procced with following task
+## Now then processed with following task
 
 
 1. Navigate to the project directory:
