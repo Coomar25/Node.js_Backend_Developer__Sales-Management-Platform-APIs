@@ -1,19 +1,24 @@
 const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
 
-// Instantiate the Prisma Client
 const prisma = new PrismaClient();
 
-// Define the seed function
-async function seed() {
+const seed = async () => {
   try {
-    // Create Users
+    // Create users
     const user1 = await prisma.user.create({
       data: {
-        fullName: "Donib Irakihda",
-        email: "admin@admin.com",
-        password: await bcrypt.hash("hacker", 10),
-        avatar: "img.jpg",
+        fullName: "John Doe",
+        email: "john@example.com",
+        password: "password123",
+        role: "USER",
+      },
+    });
+
+    const user2 = await prisma.user.create({
+      data: {
+        fullName: "Jane Smith",
+        email: "jane@example.com",
+        password: "password456",
         role: "ADMIN",
       },
     });
@@ -21,32 +26,47 @@ async function seed() {
     // Create products
     const product1 = await prisma.product.create({
       data: {
-        name: "Apple",
-        price: 20.0,
+        name: "Product 1",
+        description: "This is the first product",
+        price: 10.99,
       },
     });
 
-    // Create Orders
+    const product2 = await prisma.product.create({
+      data: {
+        name: "Product 2",
+        description: "This is the second product",
+        price: 19.99,
+      },
+    });
+
+    // Create orders
     const order1 = await prisma.order.create({
       data: {
         userId: user1.id,
-        totalAmount: 20,
-        products: {
-          create: [
-            { productId: product1.id, quantity: 1, price: product1.price },
-          ],
-        },
+        productId: product1.id,
+        quantity: 2,
+        totalAmount: product1.price * 2,
+        status: "PENDING",
       },
     });
 
-    console.log("seeded");
+    const order2 = await prisma.order.create({
+      data: {
+        userId: user2.id,
+        productId: product2.id,
+        quantity: 1,
+        totalAmount: product2.price,
+        status: "PENDING",
+      },
+    });
+
+    console.log("Seed data created successfully.");
   } catch (error) {
-    console.error("error: ", error);
+    console.error("Error seeding data:", error);
   } finally {
-    // Disconnect the Prisma Client
     await prisma.$disconnect();
   }
-}
+};
 
-// Run the seed function
 seed();
