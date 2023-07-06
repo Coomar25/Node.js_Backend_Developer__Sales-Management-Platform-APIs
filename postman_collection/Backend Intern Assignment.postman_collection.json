@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "1d681a37-33ea-4ea7-93a2-18c0b90fe226",
+		"name": "Backend Intern Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26801694"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"coomar\",\r\n    \"email\": \"kumarbhetwal25@gmail.com\",\r\n    \"password\":\"11111111\",\r\n    \"confirmpassword\" : \"11111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/registeruser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"registeruser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginuser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"coomar\",\r\n    \"password\": \"11111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/loginuser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"loginuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "testjwt",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt1bWFyIiwiaWF0IjoxNjg4NTI3NTg1LCJleHAiOjE2ODg1Mjg0ODV9.mf332p_WrLHhdCAbEkt_z3w550Zp4gnG07FACV2sJ9c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/testJWtAuthorization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"testJWtAuthorization"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getalluser",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt1bWFyIiwiaWF0IjoxNjg4NTMwNDkxLCJleHAiOjE2ODg1MzEzOTF9.u-Fb4XdZ802vPpw9de5YO2aXET9vhRKO0vy2CEjW2uA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/api/getalluser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"getalluser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateuser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt1bWFyIiwiaWF0IjoxNjg4NTMwNDkxLCJleHAiOjE2ODg1MzEzOTF9.u-Fb4XdZ802vPpw9de5YO2aXET9vhRKO0vy2CEjW2uA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"Updated5\",\r\n    \"email\" : \"updated45@gmail.com\",\r\n    \"password\": \"723339875376q5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/updateuser/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"updateuser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNvb21hciIsImlhdCI6MTY4ODUzMTQ3OCwiZXhwIjoxNjg4NTMyMzc4fQ.eDasFLkYAn7ASM28rniGefTkkA9mj2a1KsgT3f6fbZc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/api/deleteUser/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"deleteUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNvb21hciIsImlhdCI6MTY4ODUzMzg5OCwiZXhwIjoxNjg4NTM0Nzk4fQ.7jSdQjzjcmWGxvpuAcPe813DBddPtSrTmU9vdhuS9As",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productname\": \"hello\", \r\n    \"description\": \"hello\",\r\n    \"category\": \"hello\",\r\n    \"price\": \"hello\",\r\n    \"quantity\": \"hello\",\r\n    \"brand\": \"hello\",\r\n    \"image\": \"hello\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/addProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"addProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllProductDetail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/addProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"addProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProduct",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productname\": \"updated\", \r\n    \"description\": \"updated\",\r\n    \"category\": \"updated\",\r\n    \"price\": 2000,\r\n    \"quantity\": 9,\r\n    \"brand\": \"updated\",\r\n    \"image\": \"updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/updateProduct/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"updateProduct",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/deleteProduct/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"deleteProduct",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 2,\r\n    \"productname\": \"product\",\r\n    \"quantity\": 5,\r\n    \"price\": 400\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/createOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"createOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOrder",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "allOrderDetails",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "salesreport based on week",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/reports/sales?interval=month",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"reports",
+						"sales"
+					],
+					"query": [
+						{
+							"key": "interval",
+							"value": "month"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salesreport based on month",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "salesreport based on year",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/report/getTopSellingProducts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"report",
+						"getTopSellingProducts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
