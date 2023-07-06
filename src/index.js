@@ -19,6 +19,10 @@ app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/reports", reportRoute);
 
+app.get("/", (req, res) => {
+  res.send("<h1>Hello Folks</h1>");
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server ready at port ${PORT}`);
 });
