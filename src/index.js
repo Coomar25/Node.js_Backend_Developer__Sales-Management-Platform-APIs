@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const swaggerUi = require("swagger-ui-express");
 const app = express();
 const morgan = require("morgan");
 const userRoute = require("./routes/userRoute");
@@ -21,7 +20,7 @@ app.use("/api/orders", orderRoute);
 app.use("/api/reports", reportRoute);
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server ready at ${PORT}`);
+  console.log(`🚀 Server ready at port ${PORT}`);
 });
 
 module.exports = { app };
