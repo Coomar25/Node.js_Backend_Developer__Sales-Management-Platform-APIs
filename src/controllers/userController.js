@@ -70,7 +70,10 @@ const loginUser = async (req, res) => {
     }
 
     // Generate JWT Token
-    const token = jwt.sign({ userId: existingUser.id }, SECRET_JWT);
+    const token = jwt.sign(
+      { userId: existingUser.id, role: existingUser.role },
+      SECRET_JWT
+    );
     res.status(200).json({
       message: "User logged in successfully.",
       user: existingUser,
@@ -95,8 +98,8 @@ const updateUserById = async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-    // Update the user data
-    const updatedData = {
+    // Payload of user data
+    const updateData = {
       fullName: fullName,
       email: email,
     };
@@ -108,13 +111,13 @@ const updateUserById = async (req, res) => {
     }
 
     if (req.file) {
-      updatedData.avatar = req.file?.path;
+      updateData.avatar = req.file?.path;
     }
 
     // Update the user data in database
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: updatedData,
+      data: updateData,
     });
 
     res.status(200).json({
@@ -152,7 +155,10 @@ const deleteUserById = async (req, res) => {
 const getUserById = async (req, res) => {
   const userId = Number(req.params.id);
   try {
-    const user = await prisma.user.findUnique({ where: { id: userId } });
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include: { orders: true },
+    });
     if (!user) {
       return res.status(404).json({ error: "User not found." });
     }

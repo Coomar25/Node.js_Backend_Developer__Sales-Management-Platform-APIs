@@ -6,8 +6,13 @@ const {
   deleteUserById,
   getUserById,
 } = require("../controllers/userController");
-const { validateRegisterUser } = require("../validators/userValidator");
+const {
+  validateRegisterUser,
+  validateLoginUser,
+  validateUpdateUser,
+} = require("../validators/userValidator");
 const upload = require("../helper/multer");
+const { isAdmin } = require("../middlewares/auth");
 
 const userRoute = express.Router();
 
@@ -18,11 +23,16 @@ userRoute.post(
   registerUser
 );
 
-userRoute.post("/login", loginUser);
+userRoute.post("/login", validateLoginUser, loginUser);
 
-userRoute.put("/update/:id", upload.single("avatar"), updateUserById);
+userRoute.put(
+  "/update/:id",
+  upload.single("avatar"),
+  validateUpdateUser,
+  updateUserById
+);
 
-userRoute.delete("/delete/:id", deleteUserById);
+userRoute.delete("/delete/:id", isAdmin, deleteUserById);
 
 userRoute.get("/get-user/:id", getUserById);
 

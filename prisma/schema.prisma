@@ -16,44 +16,45 @@ model User {
   avatar    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  role      UserRole @default(USER)
 
   orders Order[]
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 // Define the Product model
 model Product {
-  id           Int            @id @default(autoincrement())
-  name         String
-  description  String?
-  price        Float
-  image        String?
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  OrderProduct OrderProduct[]
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orders      Order[]
 }
 
 // Define the Order model
 model Order {
-  id          Int      @id @default(autoincrement())
-  userId      Int
+  id          Int         @id @default(autoincrement())
+  userId      Int?
+  productId   Int
+  quantity    Int
   totalAmount Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
-  // Define the relation to User model
-  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  products OrderProduct[]
+  user    User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
-model OrderProduct {
-  id        Int      @id @default(autoincrement())
-  orderId   Int
-  productId Int
-  quantity  Int
-  price     Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id])
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
 }
