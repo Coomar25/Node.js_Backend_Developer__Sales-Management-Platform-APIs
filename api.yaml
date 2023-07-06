@@ -330,6 +330,8 @@ paths:
       summary: Delete a product
       tags:
         - Product Management APIs to create, update, delete, and retrieve product information.
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -402,6 +404,8 @@ paths:
       summary: Get allOrderDetails 
       tags:
         - Order Management APIs to create, update, delete, and retrieve order information.
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -410,6 +414,8 @@ paths:
       summary: Delete a Order
       tags:
         - Order Management APIs to create, update, delete, and retrieve order information.
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -425,6 +431,8 @@ paths:
       summary: Get allOrderDetails 
       tags:
         - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -435,6 +443,8 @@ paths:
       summary: Get allOrderDetails 
       tags:
         - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -445,6 +455,8 @@ paths:
       summary: Get allOrderDetails 
       tags:
         - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Success

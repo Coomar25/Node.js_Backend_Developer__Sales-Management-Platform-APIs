@@ -16,21 +16,21 @@ router.delete("/api/deleteUser/:id", authenticateToken, deleteUser);
 
 //  APIs to create, update, delete, and retrieve product information.
 router.post('/api/addProduct', authenticateToken, addProduct);
-router.get('/api/getAllProductDetail', getAllProductDetail);
-router.put('/api/updateProduct/:id', updateProduct);
-router.delete('/api/deleteProduct/:id', deleteProduct);
+router.get('/api/getAllProductDetail', authenticateToken, getAllProductDetail);
+router.put('/api/updateProduct/:id', authenticateToken, updateProduct);
+router.delete('/api/deleteProduct/:id', authenticateToken, deleteProduct);
 
 
 
 // APIs to create, update, delete, and retrieve order information.
-router.post('/api/createOrder/:id', createOrder);
-router.put('/api/updateOrder/:orderId', updateOrder);
-router.delete('/api/deleteOrder/:orderId', deleteOrder);
-router.get('/api/allOrderDetails', allOrderDetails);
+router.post('/api/createOrder/:id', authenticateToken, createOrder);
+router.put('/api/updateOrder/:orderId', authenticateToken, updateOrder);
+router.delete('/api/deleteOrder/:orderId', authenticateToken, deleteOrder);
+router.get('/api/allOrderDetails', authenticateToken, allOrderDetails);
 
 // APIs to generate sales reports,
-router.get('/reports/sales', getSalesReport);
-router.get('/report/getTopSellingProducts', getTopSellingProducts);
+router.get('/reports/sales', authenticateToken, getSalesReport);
+router.get('/report/getTopSellingProducts', authenticateToken, getTopSellingProducts);
 
 
 
