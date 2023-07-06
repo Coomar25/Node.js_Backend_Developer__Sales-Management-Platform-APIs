@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { paginateResults } = require("../helper/paginationHelper");
 
 const prisma = new PrismaClient();
 
@@ -114,16 +115,26 @@ const getProductById = async (req, res) => {
 // Get all products
 const getAllProducts = async (req, res) => {
   try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const totalProducts = await prisma.product.count();
+    const totalPages = Math.ceil(totalProducts / limit);
     // Find a product
     const products = await prisma.product.findMany({});
     if (!products) {
       return res.status(401).json({ error: "No Products found." });
     }
 
+    const paginatedProducts = paginateResults(products, page, limit);
+
     // Show product details
     res.status(200).json({
       message: "Products retrieved successfully.",
-      all_products: products,
+      currentPage: page,
+      totalPages: totalPages,
+      totalProducts: totalProducts,
+      all_products: paginatedProducts,
     });
   } catch (error) {
     console.error(error);

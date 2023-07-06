@@ -196,6 +196,12 @@ const getAllOrdersByUser = async (req, res) => {
   const userId = Number(req.params.userId);
 
   try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const totalOrders = await prisma.order.count();
+    const totalPages = Math.ceil(totalOrders / limit);
+
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include: { orders: true },
@@ -205,9 +211,15 @@ const getAllOrdersByUser = async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-    res
-      .status(200)
-      .json({ message: "Orders fetched successfully.", orders: user.orders });
+    const paginatedOrders = paginateResults(user.orders, page, limit);
+
+    res.status(200).json({
+      message: "Orders fetched successfully.",
+      currentPage: page,
+      totalPages: totalPages,
+      totalOrders: totalOrders,
+      all_orders: paginatedOrders,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error while retrieving user orders." });
@@ -219,6 +231,12 @@ const getAllOrdersByProduct = async (req, res) => {
   const productId = req.params.productId;
 
   try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const totalOrders = await prisma.order.count();
+    const totalPages = Math.ceil(totalOrders / limit);
+
     const product = await prisma.product.findUnique({
       where: { id: Number(productId) },
       include: { orders: true },
@@ -228,9 +246,14 @@ const getAllOrdersByProduct = async (req, res) => {
       return res.status(404).json({ error: "Product not found." });
     }
 
+    const paginatedOrders = paginateResults(product.orders, page, limit);
+
     res.status(200).json({
       message: "All orders retrieved successfully.",
-      orders: product.orders,
+      currentPage: page,
+      totalPages: totalPages,
+      totalOrders: totalOrders,
+      all_orders: paginatedOrders,
     });
   } catch (error) {
     console.error(error);

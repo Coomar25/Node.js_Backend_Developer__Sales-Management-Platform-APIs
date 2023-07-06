@@ -20,5 +20,5 @@ app.use("/api/orders", orderRoute);
 app.use("/api/reports", reportRoute);
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server ready at: http://localhost:${PORT}`);
+  console.log(`🚀 Server ready at ${PORT}`);
 });
