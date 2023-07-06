@@ -65,6 +65,53 @@ definitions:
         image:
           type: string
           example: Pro Max
+  UpdateProduct:
+      type: object
+      properties:
+        productname:
+          type: string
+          example: updated
+        description:
+          type: string
+          example: updated
+        category:
+          type: string
+          example: updated
+        price:
+          type: integer
+          example: 2000
+        quantity:
+          type: integer
+          example: 9
+        brand:
+          type: string
+          example: updated
+        image:
+          type: string
+          example: updated
+  CreateOrder:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 2
+        productname:
+          type: string
+          example: "product 5"
+        quantity:
+          type: integer
+          example: 5
+        price:
+          type: integer
+          example: 400
+  UpdateOrder: 
+      type: object
+      properties:
+        quantity:
+          type: integer
+          example: 5
+      
+   
 
 securityDefinitions:
   # JWT:
@@ -189,8 +236,6 @@ paths:
         requestBody:
           content:
             application/json:
-              schema:
-                $ref: '#/definitions/UpdateUser'
         responses:
           200:
             description: Success
@@ -228,7 +273,7 @@ paths:
     post:
       summary: Add a product
       tags:
-        - Product
+        - Product Management APIs to create, update, delete, and retrieve product information.
       security:
         - bearerAuth: []
       parameters:
@@ -240,31 +285,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                productname:
-                  type: string
-                description:
-                  type: string
-                category:
-                  type: string
-                price:
-                  type: string
-                quantity:
-                  type: string
-                brand:
-                  type: string
-                image:
-                  type: string
-            example:
-              productname: hello
-              description: hello
-              category: hello
-              price: hello
-              quantity: hello
-              brand: hello
-              image: hello
       responses:
         '200':
           description: Success
@@ -273,7 +293,7 @@ paths:
     get:
       summary: Get all product details
       tags:
-        - Product
+        - Product Management APIs to create, update, delete, and retrieve product information.
       responses:
         '200':
           description: Success
@@ -282,7 +302,7 @@ paths:
     put:
       summary: Update a product
       tags:
-        - Product
+        - Product Management APIs to create, update, delete, and retrieve product information.
       security:
         - bearerAuth: []
       parameters:
@@ -292,34 +312,15 @@ paths:
           required: true
           schema:
             type: integer
+        - name: body
+          in: body
+          description: Insert data in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateProduct'
       requestBody:
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                productname:
-                  type: string
-                description:
-                  type: string
-                category:
-                  type: string
-                price:
-                  type: integer
-                quantity:
-                  type: integer
-                brand:
-                  type: string
-                image:
-                  type: string
-            example:
-              productname: updated
-              description: updated
-              category: updated
-              price: 2000
-              quantity: 9
-              brand: updated
-              image: updated
       responses:
         '200':
           description: Success
@@ -328,7 +329,7 @@ paths:
     delete:
       summary: Delete a product
       tags:
-        - Product
+        - Product Management APIs to create, update, delete, and retrieve product information.
       parameters:
         - name: id
           in: path
@@ -340,3 +341,116 @@ paths:
         '200':
           description: Success
 
+  /api/createOrder/{id}:
+    post:
+      summary: Create an order
+      tags:
+        - Order Management APIs to create, update, delete, and retrieve order information.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: integer
+        - name: body
+          in: body
+          description: Enter request here
+          required: true
+          schema:
+              $ref: '#/definitions/CreateOrder'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad request
+  /api/updateOrder/{id}:
+    put:
+      summary: Update a product
+      tags:
+        - Order Management APIs to create, update, delete, and retrieve order information.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the Order
+          required: true
+          schema:
+            type: integer
+        - name: body
+          in: body
+          description: Insert data in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateOrder'
+      requestBody:
+        content:
+          application/json:
+      responses:
+        '200':
+          description: Success
+  /api/allOrderDetails:
+    get:
+      summary: Get allOrderDetails 
+      tags:
+        - Order Management APIs to create, update, delete, and retrieve order information.
+      responses:
+        '200':
+          description: Success
+  /api/deleteOrder/{id}:
+    delete:
+      summary: Delete a Order
+      tags:
+        - Order Management APIs to create, update, delete, and retrieve order information.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the Order
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success
+  /reports/sales?interval=day:
+    get:
+      summary: Get allOrderDetails 
+      tags:
+        - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+  /reports/sales?interval=week:
+    get:
+      summary: Get allOrderDetails 
+      tags:
+        - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+  /reports/sales?interval=month:
+    get:
+      summary: Get allOrderDetails 
+      tags:
+        - Reporting: APIs to generate sales reports, such as total sales by day, week, or month, and top-selling products.
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+
+
+
+  
