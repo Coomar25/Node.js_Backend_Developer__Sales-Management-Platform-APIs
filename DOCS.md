@@ -25,6 +25,7 @@ Before running the project, make sure you have the following installed on your m
 6. Run the seed: `npm run seed`
 7. Start the server: `npm run dev`
 8. The server will be running on `http://localhost:3000`.
+9. Run `node swagger.js` to get the `swagger-output.json` file. Import this file in Postman to get all the APIS setup.
 
 ## API Endpoints
 
@@ -72,6 +73,5 @@ Before running the project, make sure you have the following installed on your m
 
 - `src`: Contains the source code of the application.
 - `src/controllers`: Contains the controller functions for handling API requests.
-- `src/models`: Contains the Prisma models and schema.
 - `src/routes`: Contains the route definitions for the API endpoints.
-- `prisma`: Contains the Prisma configuration and migration files.
+- `prisma`: Contains the Prisma configuration and migration files and schemas.
