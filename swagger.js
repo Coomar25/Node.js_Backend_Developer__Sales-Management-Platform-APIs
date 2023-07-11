@@ -5,7 +5,7 @@ const doc = {
     title: "Sales API",
     description: "API descriptions",
   },
-  host: "localhost:3000",
+  host: "localhost:3000/api",
   schemes: ["http"],
 };
 const outputFile = "./swagger-output.json";
@@ -14,7 +14,7 @@ const endpoints = ["./src/main.route"];
 
 swaggerAutogen(outputFile, endpoints, doc)
   .then(() => {
-    require("./src/index");
+    console.log("Swagger-output generated.");
   })
   .catch((err) => {
     console.error(err);
