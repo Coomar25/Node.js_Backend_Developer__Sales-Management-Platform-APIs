@@ -1,4 +1,4 @@
-# Assignment Title: Node.js Backend Developer - Sales Management Platform APIs
+# Node.js Backend Developer - Sales Management Platform APIs
 
 ## Assignment Description:
 
